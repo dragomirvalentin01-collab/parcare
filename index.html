@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Parcare</title>
+<meta name="description" content="Ține minte unde ai parcat mașina.">
+<meta name="theme-color" content="#151b3a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Parcare">
+<link rel="manifest" href="manifest.webmanifest?v=1">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body>
+
+<!-- ============ stare: nu e parcat ============ -->
+<main id="v-empty" class="view">
+  <div class="wrap">
+    <div class="big-glyph" aria-hidden="true">
+      <svg viewBox="0 0 100 100"><path d="M30 88V12h24a20 20 0 0 1 0 40H44v36z" fill="currentColor"/></svg>
+    </div>
+    <h1>Mașina nu e parcată</h1>
+    <p class="muted">Când parchezi, apasă butonul. Ținem minte locul, ora și notițele tale.</p>
+    <button id="btn-park" class="btn-primary btn-xl">Am parcat acum</button>
+    <button id="btn-history-empty" class="btn-ghost btn-block">Vezi istoricul</button>
+  </div>
+</main>
+
+<!-- ============ stare: e parcat ============ -->
+<main id="v-parked" class="view" hidden>
+  <div class="wrap">
+    <p class="status-chip"><span class="dot"></span> Mașina e parcată</p>
+
+    <figure id="photo-box" class="photo-box" hidden>
+      <img id="photo-img" alt="Fotografie locație parcare">
+    </figure>
+    <div id="no-photo" class="photo-placeholder">Fără fotografie</div>
+
+    <p id="note" class="note" hidden></p>
+
+    <div class="timer-row">
+      <div>
+        <span class="label">Parcată de</span>
+        <strong id="since">—</strong>
+      </div>
+      <div class="timer" id="elapsed">0 min</div>
+    </div>
+
+    <p id="gps-line" class="gps-line"></p>
+
+    <div class="actions">
+      <button id="btn-nav" class="btn-primary btn-xl">Du-te acolo 🗺️</button>
+      <button id="btn-done" class="btn-ghost btn-block">Am ajuns, șterge</button>
+    </div>
+  </div>
+</main>
+
+<!-- ============ istoric ============ -->
+<main id="v-history" class="view" hidden>
+  <div class="wrap">
+    <div class="bar">
+      <h1>Istoric</h1>
+      <button id="btn-back" class="btn-ghost btn-sm">Înapoi</button>
+    </div>
+    <ul id="history-list" class="history"></ul>
+    <button id="btn-clear-history" class="btn-ghost btn-block btn-danger">Șterge tot istoricul</button>
+  </div>
+</main>
+
+<!-- ============ formular parcare ============ -->
+<div id="sheet" class="sheet" hidden>
+  <div class="sheet-inner">
+    <div class="sheet-grip"></div>
+    <h2>Unde ai parcat?</h2>
+
+    <p id="gps-state" class="gps-state">Se caută locația…</p>
+
+    <label class="field">
+      <span>Notiță <em>(nivel, loc, coloană)</em></span>
+      <textarea id="in-note" rows="3" maxlength="200"
+        placeholder="ex: nivel 3, loc 47, lângă coloană"></textarea>
+    </label>
+
+    <div class="row">
+      <label id="photo-label" class="btn-ghost btn-block">
+        <input type="file" id="in-photo" accept="image/*" capture="environment" hidden>
+        <span id="photo-btn-text">📷 Adaugă fotografie</span>
+      </label>
+      <button id="btn-photo-clear" class="btn-ghost" hidden>Șterge</button>
+    </div>
+    <div id="photo-preview" class="photo-preview" hidden>
+      <img id="preview-img" alt="previzualizare">
+    </div>
+
+    <div class="actions">
+      <button id="btn-save" class="btn-primary btn-xl">Salvează</button>
+      <button id="btn-cancel" class="btn-ghost btn-block">Renunță</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ panică: ecran alb pentru subsol întunecat ============ -->
+<div id="panic" hidden>
+  <div class="panic-inner">
+    <p class="panic-t">ai parcat aici</p>
+    <p id="panic-note" class="panic-note"></p>
+    <img id="panic-img" class="panic-img" alt="" hidden>
+    <button id="btn-exit-panic" class="panic-exit">Ieși</button>
+  </div>
+</div>
+
+<nav id="tabbar" class="tabbar" hidden>
+  <button id="tab-parked" class="tab">Acum</button>
+  <button id="tab-history" class="tab">Istoric</button>
+  <button id="tab-panic" class="tab">Lumină</button>
+</nav>
+
+<script src="app.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "Parcare — unde ai parcat",
+  "short_name": "Parcare",
+  "description": "Ține minte unde ai parcat mașina: locație, notiță, fotografie și navigare.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b0e1c",
+  "theme_color": "#151b3a",
+  "lang": "ro",
+  "dir": "ltr",
+  "categories": ["utilities", "travel"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
