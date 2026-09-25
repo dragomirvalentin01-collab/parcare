@@ -363,7 +363,8 @@ async function saveSpot() {
 async function finishParking() {
   const spot = getActive();
   if (!spot) return;
-  if (spot.photo) { try { await delPhoto(spot.photo); } catch {} }
+  // parcarea încheiată intră în istoric, cu tot cu fotografie; nu o pierdem
+  setHistory([{ ...spot, endedAt: Date.now() }, ...getHistory()]);
   setActive(null);
   vibrate(30);
   show('empty');
@@ -440,7 +441,8 @@ document.addEventListener('visibilitychange', () => {
 
 function boot() {
   renderParked();
-  if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  const secure = location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+  if ('serviceWorker' in navigator && secure) {
     navigator.serviceWorker.register('sw.js').catch(() => {});
   }
   window.addEventListener('online', () => renderParked());
