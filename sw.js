@@ -1,16 +1,16 @@
 /* Service worker — cache offline. Aplicația e statică, fără build step. */
 
-const CACHE = 'parcare-v1';
+const CACHE = 'parcare-v2';
 const ASSETS = [
   './',
-  'index.html?v=1',
-  'styles.css?v=1',
-  'app.js?v=1',
-  'manifest.webmanifest?v=1',
-  'icon.svg',
-  'icon-192.png',
-  'icon-512.png',
-  'icon-maskable-512.png',
+  'index.html?v=2',
+  'styles.css?v=2',
+  'app.js?v=2',
+  'manifest.webmanifest?v=2',
+  'icon.svg?v=2',
+  'icon-192.png?v=2',
+  'icon-512.png?v=2',
+  'icon-maskable-512.png?v=2',
 ];
 
 self.addEventListener('install', (e) => {

@@ -417,7 +417,7 @@ $('in-photo').onchange = async (e) => {
   e.target.value = '';
 };
 
-$('photo-clear').onclick = () => {
+els.photoClear.onclick = () => {
   pendingPhoto = null;
   els.preview.hidden = true;
   els.photoClear.hidden = true;
